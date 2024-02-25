@@ -16,19 +16,6 @@ local checked_for_cookies = false;
 
 require('common');
 
-function dump(o)
-   if type(o) == 'table' then
-      local s = '{ '
-      for k,v in pairs(o) do
-         if type(k) ~= 'number' then k = '"'..k..'"' end
-         s = s .. '['..k..'] = ' .. dump(v) .. ','
-      end
-      return s .. '} '
-   else
-      return tostring(o)
-   end
-end
-
 local function SendHealPacket()
     local HealPacket = struct.pack('bbbbbbbb', 0xE8, 0, 0, 0, 1, 0, 0, 0):totable();
     AshitaCore:GetPacketManager():AddOutgoingPacket(0xE8, HealPacket);
